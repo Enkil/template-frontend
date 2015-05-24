@@ -1,0 +1,16 @@
+{
+  "name": "igor-timohin.ru",
+  "version": "0.0.1",
+  "authors": [
+    "Igor [Enkil] Timohin <timohin.i@gmail.com>"
+  ],
+  "description": "igor-timohin.ru",
+  "homepage": "igor-timohin.ru",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
