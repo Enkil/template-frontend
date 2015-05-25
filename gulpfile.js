@@ -37,7 +37,7 @@ var projectPath = {
         img: 'build/img/images/',
         svg: 'build/img/svg/',
         pngSprite: 'build/img/sprites/png/',
-        pngSpriteCSS: 'src/styles/common/_png-sprite.less',
+        pngSpriteCSS: 'src/styles/common/',
         svgSprite: 'build/img/sprites/svg/',
         svgSpriteCSS: 'src/styles/common/_svg-sprite.less',
         fonts: 'build/css/fonts/'
@@ -49,6 +49,7 @@ var projectPath = {
         img: 'src/img/images/**/*.*',
         svg: 'src/img/svg/**/*.svg',
         pngSprite: 'src/img/sprites/png/**/*.png',
+        pngRetinaSprite: 'src/img/sprites/png/**/*-2x.png',
         svgSprite: 'src/img/sprites/svg/**/*.svg',
         fonts: 'src/styles/fonts/**/*.*'
     },
@@ -60,7 +61,8 @@ var projectPath = {
         svg: 'src/img/svg/**/*.svg',
         fonts: 'src/fonts/**/*.*'
     },
-    clean: ['build/**/*', '!build/.gitignore']
+    clean: ['build/**/*', '!build/.gitignore'],
+    ghPages: 'build/**/*'
 };
 
 /* BrowserSync local web server settings */
@@ -161,6 +163,33 @@ gulp.task('svg', function () {
         .pipe(reload({stream: true}));
 });
 
+/* PNG Sprite */
+gulp.task('png-sprite', function () {
+    // Generate spritesheet
+    var spriteData = gulp.src(projectPath.src.pngSprite).pipe(spritesmith({
+        imgName: 'png-sprite.png',
+        imgPath: '../img/sprites/png/png-sprite.png',
+        retinaSrcFilter: projectPath.src.pngRetinaSprite,
+        retinaImgName: 'png-sprite-2x.png',
+        retinaImgPath: '../img/sprites/png/png-sprite-2x.png',
+        padding: 5,
+        cssName: '_png-sprite.less',
+        cssVarMap: function (sprite) {
+            sprite.name = 'sprite__' + sprite.name;
+        }
+    }));
+
+    // Pipe image stream through image optimizer and onto disk
+    spriteData.img
+        .pipe(imagemin())
+        .pipe(gulp.dest(projectPath.build.pngSprite));
+
+    // Pipe CSS stream onto disk
+    spriteData.css
+        .pipe(gulp.dest(projectPath.build.pngSpriteCSS))
+        .pipe(reload({stream:true}));
+});
+
 /* Fonts */
 gulp.task('fonts', function() {
     gulp.src(projectPath.src.fonts)
@@ -173,12 +202,15 @@ gulp.task('fonts', function() {
 
 /* Build */
 gulp.task('build', [
+    'clean',
     'html',
     'js',
     'less',
     'images',
+    'png-sprite',
     'svg',
     'fonts',
+    'gh-pages'
 ]);
 
 /* Clean build directory */
@@ -208,9 +240,8 @@ gulp.task('watch',['webserver'], function(){
     });
 });
 
-
 /* Github Pages */
 gulp.task('gh-pages', function() {
-    return gulp.src(projectPath.build.html)
+    return gulp.src(projectPath.ghPages)
         .pipe(ghPages());
 });
