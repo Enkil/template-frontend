@@ -1,9 +1,9 @@
 .svg-sprite:before {
     content: ' ';
+    display: inline-block;
     background-image: url("{{{cssPathSvg}}}");
     background-repeat: no-repeat;
     background-size: {{width}}{{units}} {{height}}{{units}};
-    display: inline-block;
     {{#cssPathNoSvg}}
     .no-svg & {
         background-image: url("{{{cssPathNoSvg}}}");
