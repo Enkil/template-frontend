@@ -1,6 +1,7 @@
 /*******************************/
 /* JavaScript files supervisor */
 /*******************************/
+
 $(document).ready(function() {
 
     /* Third party */
