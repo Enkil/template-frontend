@@ -11006,27 +11006,3 @@ The `.retina-sprites` mixin generates a CSS rule and media query for retina grou
 
     background-position: -613px 0;
 }
-.png-sprite:before
-{
-    display: inline-block;
-
-    margin-right: 10px;
-
-    content: '';
-}
-.png-sprite--heart:before
-{
-    width: 24px;
-    height: 21px;
-
-    background-image: url(../img/sprites/png/png-sprite.png);
-    background-position: -256px 0;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
-{
-    .png-sprite--heart:before
-    {
-        background-image: url(../img/sprites/png/png-sprite-2x.png);
-        background-size: 280px 256px;
-    }
-}
