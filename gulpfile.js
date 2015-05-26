@@ -225,7 +225,7 @@ gulp.task('fonts', function() {
 
 /* Build */
 gulp.task('build', function(callback) {
-    runSequence('html',
+    runSequence(
         'clean',
         'html',
         'js',
@@ -276,4 +276,8 @@ gulp.task('watch',['webserver'], function(){
     watch([projectPath.watch.fonts], function(event, cb) {
         gulp.start('fonts');
     });
+});
+
+/* Default */
+gulp.task('default', ['watch'], function() {
 });

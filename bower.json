@@ -14,7 +14,6 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap-material-design": "~0.3.0",
     "bootstrap": "~3.3.4"
   }
 }
