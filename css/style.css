@@ -10835,6 +10835,93 @@ hr.on-light
 {
     box-shadow: 0 27px 24px 0 rgba(0, 0, 0, .2), 0 40px 77px 0 rgba(0, 0, 0, .22);
 }
+@font-face
+{
+    font-family: 'RobotoDraft';
+    font-weight: 400;
+    font-style: normal;
+
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), local('Roboto-Regular'), url(../fonts/RobotoDraftRegular.woff2) format('woff2'), url(../fonts/RobotoDraftRegular.woff) format('woff');
+}
+@font-face
+{
+    font-family: 'RobotoDraft';
+    font-weight: 500;
+    font-style: normal;
+
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), local('Roboto-Medium'), url(../fonts/RobotoDraftMedium.woff2) format('woff2'), url(../fonts/RobotoDraftMedium.woff) format('woff');
+}
+@font-face
+{
+    font-family: 'RobotoDraft';
+    font-weight: 700;
+    font-style: normal;
+
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), local('Roboto-Bold'), url(../fonts/RobotoDraftBold.woff2) format('woff2'), url(../fonts/RobotoDraftBold.woff) format('woff');
+}
+@font-face
+{
+    font-family: 'RobotoDraft';
+    font-weight: 400;
+    font-style: italic;
+
+    src: local('RobotoDraft Italic'), local('RobotoDraft-Italic'), local('Roboto-Italic'), url(../fonts/RobotoDraftItalic.woff2) format('woff2'), url(../fonts/RobotoDraftItalic.woff) format('woff');
+}
+.withripple
+{
+    position: relative;
+}
+.ripple-wrapper
+{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    border-radius: inherit;
+}
+.ripple
+{
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50%;
+        -ms-transform-origin: 50%;
+            transform-origin: 50%;
+    pointer-events: none;
+
+    opacity: 0;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, .05);
+}
+.ripple.ripple-on
+{
+    -webkit-transition: opacity .15s ease-in 0s, -webkit-transform .5s cubic-bezier(.4, 0, .2, 1) .1s;
+            transition: opacity .15s ease-in 0s, transform .5s cubic-bezier(.4, 0, .2, 1) .1s;
+
+    opacity: .1;
+}
+.ripple.ripple-out
+{
+    -webkit-transition: opacity .1s linear 0s !important;
+            transition: opacity .1s linear 0s !important;
+
+    opacity: 0;
+}
 /* Custom */
 /*
 LESS variables are information about icon's compiled state, stored under its original file name
@@ -10891,7 +10978,35 @@ The `.retina-sprites` mixin generates a CSS rule and media query for retina grou
 
 .retina-sprites(@retina-groups);
 */
-.icon-test:before
+.svg-sprite:before
+{
+    display: inline-block;
+
+    content: ' ';
+
+    background-image: url('../img/sprites/svg/svg-sprite.svg');
+    background-repeat: no-repeat;
+    background-size: 1148px 613px;
+}
+.no-svg .svg-sprite:before
+{
+    background-image: url('../img/sprites/svg/svg-sprite.png');
+}
+.svg-sprite--brain13:before
+{
+    width: 613px;
+    height: 613px;
+
+    background-position: 0 0;
+}
+.svg-sprite--male172:before
+{
+    width: 536px;
+    height: 536px;
+
+    background-position: -613px 0;
+}
+.png-sprite:before
 {
     display: inline-block;
 
@@ -10899,19 +11014,19 @@ The `.retina-sprites` mixin generates a CSS rule and media query for retina grou
 
     content: '';
 }
-.icon-test--heart:before
+.png-sprite--heart:before
 {
     width: 24px;
     height: 21px;
 
     background-image: url(../img/sprites/png/png-sprite.png);
-    background-position: -261px 0;
+    background-position: -256px 0;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
 {
-    .icon-test--heart:before
+    .png-sprite--heart:before
     {
         background-image: url(../img/sprites/png/png-sprite-2x.png);
-        background-size: 285px 256px;
+        background-size: 280px 256px;
     }
 }
