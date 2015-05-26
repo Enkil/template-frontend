@@ -23,10 +23,12 @@ var gulp = require('gulp'), // Task runner
     pngquant = require('imagemin-pngquant'), // PNG plugin for ImageMin
     spritesmith = require('gulp.spritesmith'), // Convert a set of images into a spritesheet and CSS variables
     svg2png = require('gulp-svg2png'), // Convert SVGs to PNGs
+    svgmin = require('gulp-svgmin'), // Minify SVG with SVGO
     svgspritesheet = require('gulp-svg-spritesheet'), // Convert a set of SVGs into a spritesheet and CSS variables
     browserSync = require("browser-sync"), // Synchronised browser testing
     reload = browserSync.reload,
-    ghPages = require('gulp-gh-pages'); // Publish contents to Github pages
+    ghPages = require('gulp-gh-pages'), // Publish contents to Github pages
+    runSequence = require('run-sequence').use(gulp); // Run a series of dependent gulp tasks in order
 
 /* Path settings */
 var projectPath = {
@@ -38,7 +40,8 @@ var projectPath = {
         svg: 'build/img/svg/',
         pngSprite: 'build/img/sprites/png/',
         pngSpriteCSS: 'src/styles/common/',
-        svgSprite: 'build/img/sprites/svg/',
+        svgSprite: 'build/img/sprites/svg/svg-sprite.svg',
+        svgSpriteNoSvg: 'build/img/sprites/svg/svg-sprite.png',
         svgSpriteCSS: 'src/styles/common/_svg-sprite.less',
         fonts: 'build/css/fonts/'
     },
@@ -51,18 +54,21 @@ var projectPath = {
         pngSprite: 'src/img/sprites/png/**/*.png',
         pngRetinaSprite: 'src/img/sprites/png/**/*-2x.png',
         svgSprite: 'src/img/sprites/svg/**/*.svg',
+        svgSpriteTpl: 'src/styles/common/_svg-sprite-less.tpl',
         fonts: 'src/styles/fonts/**/*.*'
     },
     watch: { // Set watch paths
         html: 'src/**/*.html',
         js: 'src/js/**/*.js',
         style: 'src/styles/**/*.less',
-        img: 'src/img/images/**/*.{png,jpg,jpeg,gif}',
+        img: 'src/img/images/**/*.*',
         svg: 'src/img/svg/**/*.svg',
+        pngSprite: 'src/img/sprites/png/**/*.png',
+        svgSprite: 'src/img/sprites/svg/**/*.svg',
         fonts: 'src/fonts/**/*.*'
     },
-    clean: ['build/**/*', '!build/.gitignore'],
-    ghPages: 'build/**/*'
+    clean: ['build/**/*', '!build/.gitignore'], // Set paths and exludes for cleaning build dir
+    ghPages: 'build/**/*' // Set dir that will be uploaded to GitHub Pages
 };
 
 /* BrowserSync local web server settings */
@@ -88,7 +94,7 @@ gulp.task('webserver', function () {
 
 /* HTML */
 gulp.task('html', function () {
-    gulp.src(projectPath.src.html)
+    return gulp.src(projectPath.src.html)
         .pipe(rigger())
         .pipe(size({
             title: 'HTML'
@@ -99,7 +105,7 @@ gulp.task('html', function () {
 
 /* JavaScript */
 gulp.task('js', function () {
-    gulp.src(projectPath.src.js)
+    return gulp.src(projectPath.src.js)
         .pipe(rigger())
         .pipe(sourcemaps.init())
         .pipe(gulp.dest(projectPath.build.js))
@@ -136,7 +142,7 @@ gulp.task('less', function() {
 
 /* Images */
 gulp.task('images', function () {
-    gulp.src(projectPath.src.img)
+    return gulp.src(projectPath.src.img)
         .pipe(imagemin({
             progressive: true,
             optimizationLevel: 5,
@@ -152,10 +158,8 @@ gulp.task('images', function () {
 
 /* SVG */
 gulp.task('svg', function () {
-    gulp.src(projectPath.src.svg)
-        .pipe(imagemin({
-            svgoPlugins: [{removeViewBox: false}]
-        }))
+    return gulp.src(projectPath.src.svg)
+        .pipe(svgmin())
         .pipe(size({
             title: 'SVG'
         }))
@@ -172,7 +176,7 @@ gulp.task('png-sprite', function () {
         retinaSrcFilter: projectPath.src.pngRetinaSprite,
         retinaImgName: 'png-sprite-2x.png',
         retinaImgPath: '../img/sprites/png/png-sprite-2x.png',
-        padding: 5,
+        padding: 0,
         cssName: '_png-sprite.less',
         cssVarMap: function (sprite) {
             sprite.name = 'sprite__' + sprite.name;
@@ -190,9 +194,28 @@ gulp.task('png-sprite', function () {
         .pipe(reload({stream:true}));
 });
 
+/* SVG sprite */
+gulp.task('svg-sprite', function () {
+    gulp.src(projectPath.src.svgSprite)
+        .pipe(svgspritesheet({
+            cssPathNoSvg: '../img/sprites/svg/svg-sprite.png',
+            cssPathSvg: '../img/sprites/svg/svg-sprite.svg',
+            padding: 0,
+            pixelBase: 16,
+            positioning: 'packed',
+            templateSrc: projectPath.src.svgSpriteTpl,
+            templateDest: projectPath.build.svgSpriteCSS,
+            units: 'px'
+        }))
+        .pipe(svgmin())
+        .pipe(gulp.dest(projectPath.build.svgSprite))
+        .pipe(svg2png())
+        .pipe(gulp.dest(projectPath.build.svgSpriteNoSvg));
+});
+
 /* Fonts */
 gulp.task('fonts', function() {
-    gulp.src(projectPath.src.fonts)
+    return gulp.src(projectPath.src.fonts)
         .pipe(size({
             title: 'Fonts'
         }))
@@ -201,21 +224,30 @@ gulp.task('fonts', function() {
 });
 
 /* Build */
-gulp.task('build', [
-    'clean',
-    'html',
-    'js',
-    'less',
-    'images',
-    'png-sprite',
-    'svg',
-    'fonts',
-    'gh-pages'
-]);
+gulp.task('build', function(callback) {
+    runSequence('html',
+        'clean',
+        'html',
+        'js',
+        'less',
+        'images',
+        'png-sprite',
+        'svg-sprite',
+        'svg',
+        'fonts',
+        'gh-pages',
+        callback)
+});
 
 /* Clean build directory */
 gulp.task('clean', function (cb) {
     del(projectPath.clean, cb);
+});
+
+/* Github Pages */
+gulp.task('gh-pages', function() {
+    return gulp.src(projectPath.ghPages)
+        .pipe(ghPages());
 });
 
 /* Watching */
@@ -235,13 +267,13 @@ gulp.task('watch',['webserver'], function(){
     watch([projectPath.watch.svg], function(event, cb) {
         gulp.start('svg');
     });
+    watch([projectPath.watch.pngSprite], function(event, cb) {
+        gulp.start('png-sprite');
+    });
+    watch([projectPath.watch.svgSprite], function(event, cb) {
+        gulp.start('svg-sprite');
+    });
     watch([projectPath.watch.fonts], function(event, cb) {
         gulp.start('fonts');
     });
-});
-
-/* Github Pages */
-gulp.task('gh-pages', function() {
-    return gulp.src(projectPath.ghPages)
-        .pipe(ghPages());
 });
