@@ -1,28 +1,12 @@
-.svg-sprite:before {
-    content: ' ';
-    display: inline-block;
+.svg-sprite--html5 {
     background-image: url("../img/sprites/svg/svg-sprite.svg");
+    background-position: 0px 0px;
+    width: 47px;
+    height: 47px;
     background-repeat: no-repeat;
-    background-size: 1148px 613px;
+    background-size: 47px 47px;
     .no-svg & {
         background-image: url("../img/sprites/svg/svg-sprite.png");
-    }
-}
-
-.svg-sprite--brain13 {
-    &:extend(.svg-sprite);
-    &:before{
-        background-position: 0px 0px;
-        width: 613px;
-        height: 613px;
-    }
-}
-.svg-sprite--male172 {
-    &:extend(.svg-sprite);
-    &:before{
-        background-position: -613px 0px;
-        width: 536px;
-        height: 536px;
     }
 }
 

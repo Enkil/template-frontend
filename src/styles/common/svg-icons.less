@@ -1,0 +1,14 @@
+.svg-sprite{
+  &:before{
+    content: '';
+    display: inline-block;
+    width: 32px!important;
+    height: 32px!important;
+    background-size: contain!important;
+  }
+
+  &--html5-icon:before{
+    .svg-sprite--html5();
+  }
+
+}

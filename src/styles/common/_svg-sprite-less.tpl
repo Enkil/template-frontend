@@ -1,7 +1,9 @@
-.svg-sprite:before {
-    content: ' ';
-    display: inline-block;
+{{#sprites}}
+.svg-sprite--{{fileName}} {
     background-image: url("{{{cssPathSvg}}}");
+    background-position: {{x}}{{units}} {{y}}{{units}};
+    width: {{w}}{{units}};
+    height: {{h}}{{units}};
     background-repeat: no-repeat;
     background-size: {{width}}{{units}} {{height}}{{units}};
     {{#cssPathNoSvg}}
@@ -9,16 +11,6 @@
         background-image: url("{{{cssPathNoSvg}}}");
     }
     {{/cssPathNoSvg}}
-}
-
-{{#sprites}}
-.svg-sprite--{{fileName}} {
-    &:extend(.svg-sprite);
-    &:before{
-        background-position: {{x}}{{units}} {{y}}{{units}};
-        width: {{w}}{{units}};
-        height: {{h}}{{units}};
-    }
 }
 {{/sprites}}
 

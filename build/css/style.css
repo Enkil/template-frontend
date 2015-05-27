@@ -10978,55 +10978,72 @@ The `.retina-sprites` mixin generates a CSS rule and media query for retina grou
 
 .retina-sprites(@retina-groups);
 */
-.svg-sprite:before
+.svg-sprite--html5
 {
-    display: inline-block;
-
-    content: ' ';
+    width: 47px;
+    height: 47px;
 
     background-image: url('../img/sprites/svg/svg-sprite.svg');
     background-repeat: no-repeat;
-    background-size: 1148px 613px;
+    background-position: 0 0;
+    background-size: 47px 47px;
 }
-.no-svg .svg-sprite:before
+.no-svg .svg-sprite--html5
 {
     background-image: url('../img/sprites/svg/svg-sprite.png');
-}
-.svg-sprite--brain13:before
-{
-    width: 613px;
-    height: 613px;
-
-    background-position: 0 0;
-}
-.svg-sprite--male172:before
-{
-    width: 536px;
-    height: 536px;
-
-    background-position: -613px 0;
 }
 .png-sprite:before
 {
     display: inline-block;
 
-    margin-right: 10px;
-
     content: '';
 }
-.png-sprite--heart:before
+.png-sprite--html5:before
 {
-    width: 24px;
-    height: 21px;
+    width: 32px;
+    height: 32px;
 
     background-image: url(../img/sprites/png/png-sprite.png);
-    background-position: -256px 0;
+    background-position: 0 0;
+}
+.png-sprite--html5-retina:before
+{
+    width: 32px;
+    height: 32px;
+
+    background-image: url(../img/sprites/png/png-sprite.png);
+    background-position: 0 0;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
 {
-    .png-sprite--heart:before
+    .png-sprite--html5-retina:before
     {
         background-image: url(../img/sprites/png/png-sprite-2x.png);
-        background-size: 280px 256px;
+        background-size: 32px 32px;
     }
+}
+.svg-sprite:before
+{
+    display: inline-block;
+
+    width: 32px!important;
+    height: 32px!important;
+
+    content: '';
+
+    background-size: contain!important;
+}
+.svg-sprite--html5-icon:before
+{
+    width: 47px;
+    height: 47px;
+
+    background-image: url('../img/sprites/svg/svg-sprite.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 47px 47px;
+}
+.no-svg .svg-sprite--html5-icon:before
+{
+    background-image: url('../img/sprites/svg/svg-sprite.png');
 }

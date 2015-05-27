@@ -12,6 +12,8 @@ var gulp = require('gulp'), // Task runner
     rigger = require('gulp-rigger'), // // Include content of one file to another
     size = require('gulp-size'), // Display the size of something
     path = require('path'),
+    concat = require('gulp-concat'), // Concatenates files
+    streamqueue = require('streamqueue'), // Pipe queued streams progressively, keeping datas order.
     sourcemaps = require('gulp-sourcemaps'), // Write source maps
     less = require('gulp-less'), // Compile Less to CSS
     lessReporter = require('gulp-less-reporter'), // Error reporter for gulp-less
@@ -19,6 +21,8 @@ var gulp = require('gulp'), // Task runner
     csscomb = require('gulp-csscomb'), // Coding style formatter for CSS
     minifycss = require('gulp-minify-css'), // Minify CSS
     uglify = require('gulp-uglify'), // Minify JS
+    jshint = require('gulp-jshint'), // JS code linter
+    stylish = require('jshint-stylish'), // Reporter for JSHint
     imagemin = require('gulp-imagemin'), // Optimize images
     pngquant = require('imagemin-pngquant'), // PNG plugin for ImageMin
     spritesmith = require('gulp.spritesmith'), // Convert a set of images into a spritesheet and CSS variables
@@ -35,6 +39,7 @@ var projectPath = {
     build: { // Set build paths
         html: 'build/',
         js: 'build/js/',
+        jsMainFile: 'main.js',
         css: 'build/css/',
         img: 'build/img/images/',
         svg: 'build/img/svg/',
@@ -47,7 +52,8 @@ var projectPath = {
     },
     src: { // Set source paths
         html: 'src/**/*.html',
-        js: 'src/js/main.js',
+        jsCustom: 'src/js/custom.js',
+        jsVendor: 'src/js/vendor.js',
         style: 'src/styles/style.less',
         img: 'src/img/images/**/*.*',
         svg: 'src/img/svg/**/*.svg',
@@ -105,15 +111,19 @@ gulp.task('html', function () {
 
 /* JavaScript */
 gulp.task('js', function () {
-    return gulp.src(projectPath.src.js)
-        .pipe(rigger())
+    return streamqueue(
+        { objectMode: true },
+        gulp.src(projectPath.src.jsVendor).pipe(rigger()).pipe(size({title: 'Vendor JavaScript'})),
+        gulp.src(projectPath.src.jsCustom).pipe(rigger()).pipe(jshint()).pipe(jshint.reporter(stylish)).pipe(size({title: 'Custom JavaScript'}))
+    )
+        .pipe(concat(projectPath.build.jsMainFile))
         .pipe(sourcemaps.init())
         .pipe(gulp.dest(projectPath.build.js))
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
         .pipe(size({
-            title: 'JavaScript'
+            title: 'Total JavaScript'
         }))
         .pipe(gulp.dest(projectPath.build.js))
         .pipe(reload({stream: true}));
@@ -223,6 +233,11 @@ gulp.task('fonts', function() {
         .pipe(reload({stream: true}));
 });
 
+/* Clean build directory */
+gulp.task('clean', function (cb) {
+    del(projectPath.clean, cb);
+});
+
 /* Build */
 gulp.task('build', function(callback) {
     runSequence(
@@ -237,11 +252,6 @@ gulp.task('build', function(callback) {
         'fonts',
         'gh-pages',
         callback)
-});
-
-/* Clean build directory */
-gulp.task('clean', function (cb) {
-    del(projectPath.clean, cb);
 });
 
 /* Github Pages */

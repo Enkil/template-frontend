@@ -11,71 +11,47 @@ The large array-like variables contain all information about a single icon
 At the bottom of this section, we provide information about the spritesheet itself
 @spritesheet: width height image @spritesheet-sprites;
 */
-@sprite-open109-name: sprite__open109;
-@sprite-open109-x: 0px;
-@sprite-open109-y: 0px;
-@sprite-open109-offset-x: 0px;
-@sprite-open109-offset-y: 0px;
-@sprite-open109-width: 256px;
-@sprite-open109-height: 256px;
-@sprite-open109-total-width: 280px;
-@sprite-open109-total-height: 256px;
-@sprite-open109-image: '../img/sprites/png/png-sprite.png';
-@sprite-open109: 0px 0px 0px 0px 256px 256px 280px 256px '../img/sprites/png/png-sprite.png' sprite__open109;
-@sprite-retina-name: sprite__retina;
-@sprite-retina-x: 256px;
-@sprite-retina-y: 0px;
-@sprite-retina-offset-x: -256px;
-@sprite-retina-offset-y: 0px;
-@sprite-retina-width: 24px;
-@sprite-retina-height: 21px;
-@sprite-retina-total-width: 280px;
-@sprite-retina-total-height: 256px;
-@sprite-retina-image: '../img/sprites/png/png-sprite.png';
-@sprite-retina: 256px 0px -256px 0px 24px 21px 280px 256px '../img/sprites/png/png-sprite.png' sprite__retina;
-@sprite-open109-2x-name: sprite__open109-2x;
-@sprite-open109-2x-x: 0px;
-@sprite-open109-2x-y: 0px;
-@sprite-open109-2x-offset-x: 0px;
-@sprite-open109-2x-offset-y: 0px;
-@sprite-open109-2x-width: 256px;
-@sprite-open109-2x-height: 256px;
-@sprite-open109-2x-total-width: 280px;
-@sprite-open109-2x-total-height: 256px;
-@sprite-open109-2x-image: '../img/sprites/png/png-sprite-2x.png';
-@sprite-open109-2x: 0px 0px 0px 0px 256px 256px 280px 256px '../img/sprites/png/png-sprite-2x.png' sprite__open109-2x;
-@sprite-retina-2x-name: sprite__retina-2x;
-@sprite-retina-2x-x: 256px;
-@sprite-retina-2x-y: 0px;
-@sprite-retina-2x-offset-x: -256px;
-@sprite-retina-2x-offset-y: 0px;
-@sprite-retina-2x-width: 24px;
-@sprite-retina-2x-height: 21px;
-@sprite-retina-2x-total-width: 280px;
-@sprite-retina-2x-total-height: 256px;
-@sprite-retina-2x-image: '../img/sprites/png/png-sprite-2x.png';
-@sprite-retina-2x: 256px 0px -256px 0px 24px 21px 280px 256px '../img/sprites/png/png-sprite-2x.png' sprite__retina-2x;
-@spritesheet-width: 280px;
-@spritesheet-height: 256px;
+@sprite-html5-name: sprite__html5;
+@sprite-html5-x: 0px;
+@sprite-html5-y: 0px;
+@sprite-html5-offset-x: 0px;
+@sprite-html5-offset-y: 0px;
+@sprite-html5-width: 32px;
+@sprite-html5-height: 32px;
+@sprite-html5-total-width: 32px;
+@sprite-html5-total-height: 32px;
+@sprite-html5-image: '../img/sprites/png/png-sprite.png';
+@sprite-html5: 0px 0px 0px 0px 32px 32px 32px 32px '../img/sprites/png/png-sprite.png' sprite__html5;
+@sprite-html5-2x-name: sprite__html5-2x;
+@sprite-html5-2x-x: 0px;
+@sprite-html5-2x-y: 0px;
+@sprite-html5-2x-offset-x: 0px;
+@sprite-html5-2x-offset-y: 0px;
+@sprite-html5-2x-width: 64px;
+@sprite-html5-2x-height: 64px;
+@sprite-html5-2x-total-width: 64px;
+@sprite-html5-2x-total-height: 64px;
+@sprite-html5-2x-image: '../img/sprites/png/png-sprite-2x.png';
+@sprite-html5-2x: 0px 0px 0px 0px 64px 64px 64px 64px '../img/sprites/png/png-sprite-2x.png' sprite__html5-2x;
+@spritesheet-width: 32px;
+@spritesheet-height: 32px;
 @spritesheet-image: '../img/sprites/png/png-sprite.png';
-@spritesheet-sprites: @sprite-open109 @sprite-retina;
-@spritesheet: 280px 256px '../img/sprites/png/png-sprite.png' @spritesheet-sprites;
-@retina-spritesheet-width: 280px;
-@retina-spritesheet-height: 256px;
+@spritesheet-sprites: @sprite-html5;
+@spritesheet: 32px 32px '../img/sprites/png/png-sprite.png' @spritesheet-sprites;
+@retina-spritesheet-width: 64px;
+@retina-spritesheet-height: 64px;
 @retina-spritesheet-image: '../img/sprites/png/png-sprite-2x.png';
-@retina-spritesheet-sprites: @sprite-open109-2x @sprite-retina-2x;
-@retina-spritesheet: 280px 256px '../img/sprites/png/png-sprite-2x.png' @retina-spritesheet-sprites;
+@retina-spritesheet-sprites: @sprite-html5-2x;
+@retina-spritesheet: 64px 64px '../img/sprites/png/png-sprite-2x.png' @retina-spritesheet-sprites;
 
 /*
 These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
 
 The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
 */
-@sprite-open109-group-name: sprite__open109;
-@sprite-open109-group: sprite__open109 @sprite-open109 @sprite-open109-2x;
-@sprite-retina-group-name: sprite__retina;
-@sprite-retina-group: sprite__retina @sprite-retina @sprite-retina-2x;
-@retina-groups: @sprite-open109-group @sprite-retina-group;
+@sprite-html5-group-name: sprite__html5;
+@sprite-html5-group: sprite__html5 @sprite-html5 @sprite-html5-2x;
+@retina-groups: @sprite-html5-group;
 
 /*
 The provided classes are intended to be used with the array-like variables
