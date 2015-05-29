@@ -14,6 +14,9 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap": "~3.3.4"
-  }
+    "bootstrap": "~3.3.4",
+    "font-awesome": "~4.3.0",
+    "scrollport-js": "~1.0.4"
+  },
+  "dependencies": {}
 }

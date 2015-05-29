@@ -1,0 +1,30 @@
+<div class="panel panel-primary" id="html-target">
+    <div class="panel-body">
+        <h2>HTML-разметка</h2>
+        <p>Задача <span class="text-primary">$ gulp html</span></p>
+        <p>
+            Страницы, которые необходимо сверстать размещаются в корне каталога <span class="text-primary">src/</span> (пример index.html)
+            Файлы html повторяющихся блоков (например, общий header, footer, модальные окна и т.д.) размещаются в каталоге <span class="text-primary">src/html-blocks/</span> :
+        </p>
+        <ul>
+            <li><span class="text-primary">src/html-blocks/common</span> - файлы html-блоков, использующиеся на всех страницах сайта</li>
+            <li><span class="text-primary">src/html-blocks/common/modals</span> - файлы html модальных окон, использующихся на всех страницах сайта</li>
+            <li><span class="text-primary">src/html-blocks/pages--external</span> - файлы html-блоков, внешних страниц сайта (страниц, доступных любому пользователю без авторизации на сайте)</li>
+            <li><span class="text-primary">src/html-blocks/pages--internal</span> - файлы html-блоков, внутренних страниц сайта (страниц, доступных залогиненному пользователю - например, страницы раздела "Личный кабинет")</li>
+        </ul>
+        <p>
+            При необходимости внутри данных каталогов можно вводить дополнительную структуру, при этом сборка html пройдет корректно.
+        </p>
+        <p>
+            Для указания того содержимое какого файла необходимо вставить используется конструкция вида
+            <span class="text-primary">//= html-blocks/folder-name/file-name.html</span> - содержимое файла file-name.html будет вставлено на место этой строки
+        </p>
+        <p>
+            Допускается использование вложенности, то есть в одном файле, содержащим код html-разметки блока, можно вызвать содержимое другого файла с блоком разметки.
+            При этом необходимо учитывать правильное написание пути к файлу. <br/>
+            Например, <br/>
+            В файле <span class="text-primary">src/html-blocks/pages-external/header--external.html</span> мы хотим вызвать содержимое файла src/html-blocks/common/modals/login.html
+            В таком случае вызов пишеться так <span class="text-primary">//= ../common/modals/login.html</span>
+        </p>
+    </div>
+</div>

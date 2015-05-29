@@ -1,0 +1,105 @@
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <h2>Создание SVG-спрайта</h2>
+        <p>Задача <span class="text-primary">$ gulp svg-sprite</span></p>
+
+        <p>
+            Все SVG, которые необходимо собрать в спрайт (например, png-файлы иконок) необходимо помещать в каталог <span class="text-primary">src/img/sprites/svg</span>.
+            <br/>
+            Итоговый спрайт будет оптимизирован и помещен в каталог <span class="text-primary">build/img/sprites/svg/svg-sprite.svg</span>.
+            <br/>
+            Также будет создан или дополнен файл <span class="text-primary">src/styles/common/_svg-sprite.less</span>, содержащий CSS-классы для вызова изображений спрайта.
+            <br/>
+            Имя CSS-класса всегда выглядит как <span class="text-primary">@svg-sprite-filename</span>, где filename - имя изображения, добавленного к спрайту.
+        </p>
+
+        <p>Пример работы с SVG-спрайтом и его стилями.</p>
+
+        <ul>
+            <li>Размещаем svg-изображение иконки в каталоге <span class="text-primary">src/img/sprites/svg/html5.svg</span></li>
+            <li>Запускаем задачу <span class="text-primary">$ gulp svg-sprite</span></li>
+            <li>Создаем файл <span class="text-primary">src/styles/common/svg-icons.less</span></li>
+            <li>
+                В нем создаем следующие CSS-классы:
+                <pre class="prettyprint linenums">.svg-sprite{
+                  &:before{
+                    content: '';
+                    display: inline-block;
+                    width: 32px!important;
+                    height: 32px!important;
+                    background-size: contain!important;
+                  }
+
+                  &--html5-icon:before{
+                    .svg-sprite--html5(); // CSS-класс, созданный при генерации SVG-спрайта.
+                  }
+
+                }</pre>
+            </li>
+            <li>Файл <span class="text-primary">src/styles/common/svg-icons.less</span> подключаем в <span class="text-primary">src/styles/style.less</span> с помощью конструкции @import (@import "common/svg-icons.less";)</li>
+            <li>
+                После компиляции less (запускаем задачу <span class="text-primary">$ gulp less</span>)получаем следующий CSS код
+                <pre class="prettyprint linenums">.svg-sprite--html5
+                    {
+                        width: 47px;
+                        height: 47px;
+
+                        background-image: url('../img/sprites/svg/svg-sprite.svg');
+                        background-repeat: no-repeat;
+                        background-position: 0 0;
+                        background-size: 47px 47px;
+                    }
+                    .no-svg .svg-sprite--html5
+                    {
+                        background-image: url('../img/sprites/svg/svg-sprite.png');
+                    }
+
+
+                    .svg-sprite:before
+                    {
+                        display: inline-block;
+
+                        width: 32px!important;
+                        height: 32px!important;
+
+                        content: '';
+
+                        background-size: contain!important;
+                    }
+                    .svg-sprite--html5-icon:before
+                    {
+                        width: 47px;
+                        height: 47px;
+
+                        background-image: url('../img/sprites/svg/svg-sprite.svg');
+                        background-repeat: no-repeat;
+                        background-position: 0 0;
+                        background-size: 47px 47px;
+                    }
+                    .no-svg .svg-sprite--html5-icon:before
+                    {
+                        background-image: url('../img/sprites/svg/svg-sprite.png');
+                    }</pre>
+            </li>
+            <li>html-тегу, около которого надо разместить иконку, добавляем CSS-классы svg-sprite svg-sprite--html5-icon</li>
+        </ul>
+
+        <p>Пример: <span class="svg-sprite svg-sprite--html5-icon">Test PNG sprite</span></p>
+
+        <p>
+            Работа с SVG-спрайтом в таком случае сводится к добавлению нужных SVG в каталог <span class="text-primary">src/img/sprites/svg</span>
+            <br/>
+            и созданию CSS-класса, в котором вызывается в качестве примеси (mixin) CSS-класс, созданный при генерации спрайта. <br/>
+            Вы можете использовать CSS-классы и по другому, вызывая изображения с спрайта, не в псевдоэлементе :before
+        </p>
+
+        <p>
+            Итого, для добавления в спрайт и генерации сопутствующего Less/CSS-кода изображений необходимо
+        <ul>
+            <li>добавить в каталог <span class="text-primary">src/img/sprites/svg</span> изображение (html5.png)</li>
+            <li>запустить задачу <span class="text-primary">$ gulp svg-sprite</span></li>
+        </ul>
+        </p>
+
+    </div>
+</div>

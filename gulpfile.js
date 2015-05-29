@@ -9,6 +9,7 @@ var gulp = require('gulp'), // Task runner
     watch = require('gulp-watch'), // Watch, that actually is an endless stream
     rename = require("gulp-rename"), // Rename files
     del = require('del'), // Delete something
+    //rigger = require('rigger'), // // Include content of one file to another
     rigger = require('gulp-rigger'), // // Include content of one file to another
     size = require('gulp-size'), // Display the size of something
     path = require('path'),
@@ -71,7 +72,7 @@ var projectPath = {
         svg: 'src/img/svg/**/*.svg',
         pngSprite: 'src/img/sprites/png/**/*.png',
         svgSprite: 'src/img/sprites/svg/**/*.svg',
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/styles/fonts/**/*.*'
     },
     clean: ['build/**/*', '!build/.gitignore'], // Set paths and exludes for cleaning build dir
     ghPages: 'build/**/*' // Set dir that will be uploaded to GitHub Pages
