@@ -39,6 +39,7 @@ Then, run this script to get the list.
 
 
 */
+@import '../../bower_components/social-likes/social-likes_classic.css';
 @font-face
 {
     font-family: 'Material-Design-Icons';
@@ -6636,7 +6637,9 @@ fieldset[disabled] .form-control.focus:disabled,
 }
 .form-control-wrapper select
 {
-    appearance: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
 }
 .form-group.has-warning .form-control
 {
@@ -10934,8 +10937,8 @@ hr.on-light
     font-weight: normal;
     font-style: normal;
 
-    src: url('../fonts/fontawesome-webfont.eot?v=4.3.0');
-    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    src: url('fonts/fontawesome-webfont.eot?v=4.3.0');
+    src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
 }
 .fa
 {
@@ -13303,6 +13306,10 @@ hr.on-light
     content: '\f23a';
 }
 /* Custom */
+/***************************************************/
+/* Set custom or change third-party Less variables */
+/***************************************************/
+/* Third party */
 /*
 LESS variables are information about icon's compiled state, stored under its original file name
 
@@ -13426,4 +13433,22 @@ The `.retina-sprites` mixin generates a CSS rule and media query for retina grou
 .no-svg .svg-sprite--html5-icon:before
 {
     background-image: url('../img/sprites/svg/svg-sprite.png');
+}
+.prettyprint
+{
+    white-space: inherit;
+}
+.prettyprint ol li
+{
+    list-style-type: inherit;
+}
+.navbar .navbar-nav > li > iframe
+{
+    margin-top: 20px;
+    margin-left: 5px;
+}
+.navbar .navbar-nav > li > .social-likes
+{
+    margin-top: 15px!important;
+    margin-left: 15px!important;
 }

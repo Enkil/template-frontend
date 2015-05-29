@@ -1,0 +1,235 @@
+<ul class="nav nav-tabs" >
+    <li class="active"><a href="#install" data-toggle="tab">Install</a></li>
+    <li><a href="#gulp" data-toggle="tab">Gulp</a></li>
+    <li><a href="#html" data-toggle="tab">HTML</a></li>
+    <li><a href="#less" data-toggle="tab">Less</a></li>
+    <li><a href="#js" data-toggle="tab">JavaScript</a></li>
+    <li><a href="#img-svg" data-toggle="tab">Оптимизация графики</a></li>
+    <li><a href="#png-sprite" data-toggle="tab">PNG-sprite</a></li>
+    <li><a href="#svg-sprite" data-toggle="tab">SVG-sprite</a></li>
+    <li><a href="#fonts" data-toggle="tab">Fonts</a></li>
+    <li><a href="#livereload" data-toggle="tab">LiveReload</a></li>
+    <li><a href="#gh-pages" data-toggle="tab">GitHub Pages</a></li>
+    <li><a href="#gh-pages" data-toggle="tab">Utils</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="install">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+
+                <p>
+                <h3>Требования к установке</h3>
+                Для корректной работы шаблона в системе должны быть глобально установлены bower и nodejs (вместе с npm) <br/>
+                <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank" title="Установка Nodejs">Установка Nodejs</a>
+                <br/>
+                <a href="http://bower.io/#install-bower" target="_blank" title="Установка Bower">Установка Bower</a>
+                </p>
+
+                <p>
+                <h3>Установка шаблона</h3>
+
+            <pre class="prettyprint linenums">
+                $ git clone https://github.com/Enkil/template-frontend.git app-name
+                $ cd app-name
+                $ npm i -d
+                $ bower install</pre>
+
+                По окончанию выполнения будут установлены все необходимые пакеты и их зависимости. <br/>
+                По умолчанию в шаблоне устанавливается и подключается Bootstrap 3, Bootstrap Material Design, Font-Awesome, Modernizr, social-likes. Однако, шаблон не накладывает никаких ограничений и не навязывает использование определенных фреймворков - с помощью bower можно установить/удалить нужные пакеты.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="gulp">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                После установки шаблона можно приступать к работе над проектом.
+                <h3>Задачи Gulp</h3>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Задача</th>
+                        <th>Краткое описание</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>$ gulp html</td>
+                        <td>сборка HTML проекта с использованием простейшией шаблонизации.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>$ gulp js</td>
+                        <td>сборка JavaScript проекта.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>$ gulp less</td>
+                        <td>компилиция Less</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>$ gulp images</td>
+                        <td>оптимизация изображений</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>$ gulp svg</td>
+                        <td>оптимизация SVG</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>$ gulp png-sprite</td>
+                        <td>создание PNG-спрайта</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>$ gulp svg-sprite</td>
+                        <td>создание SVG-спрайта</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>$ gulp fonts</td>
+                        <td>копирование файлов шрифтов</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>$ gulp clean</td>
+                        <td>очистка каталога build/</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>gulp svg-sprite</td>
+                        <td>создание SVG-спрайта</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>$ gulp webserver</td>
+                        <td>запуск локального веб-сервера для livereload и синхронного тестирования в разных браузерах</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>$ gulp gh-pages</td>
+                        <td>размещение скомпилированного проекта на Github Pages</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>$ gulp watch</td>
+                        <td>запуск задачи webserver и отслеживания изменений</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>$ gulp default</td>
+                        <td>запуск задачи watch</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="html">
+        <!--//= html-concept.html-->
+
+        <div class="panel panel-primary" id="html-target">
+            <div class="panel-body">
+                <p>Задача <span class="text-primary">$ gulp html</span></p>
+                <p>
+                    Страницы, которые необходимо сверстать размещаются в корне каталога <span class="text-primary">src/</span> (пример index.html)
+                    Файлы html повторяющихся блоков (например, общий header, footer, модальные окна и т.д.) размещаются в каталоге <span class="text-primary">src/html-blocks/</span> :
+                </p>
+                <ul>
+                    <li><span class="text-primary">src/html-blocks/common</span> - файлы html-блоков, использующиеся на всех страницах сайта</li>
+                    <li><span class="text-primary">src/html-blocks/common/modals</span> - файлы html модальных окон, использующихся на всех страницах сайта</li>
+                    <li><span class="text-primary">src/html-blocks/pages--external</span> - файлы html-блоков, внешних страниц сайта (страниц, доступных любому пользователю без авторизации на сайте)</li>
+                    <li><span class="text-primary">src/html-blocks/pages--internal</span> - файлы html-блоков, внутренних страниц сайта (страниц, доступных залогиненному пользователю - например, страницы раздела "Личный кабинет")</li>
+                </ul>
+                <p>
+                    При необходимости внутри данных каталогов можно вводить дополнительную структуру, при этом сборка html пройдет корректно.
+                </p>
+                <p>
+                    Для указания того содержимое какого файла необходимо вставить используется конструкция вида
+                    <span class="text-primary">//= html-blocks/folder-name/file-name.html</span> - содержимое файла file-name.html будет вставлено на место этой строки
+                </p>
+                <p>
+                    Допускается использование вложенности, то есть в одном файле, содержащим код html-разметки блока, можно вызвать содержимое другого файла с блоком разметки.
+                    При этом необходимо учитывать правильное написание пути к файлу. <br/>
+                    Например, <br/>
+                    В файле <span class="text-primary">src/html-blocks/pages-external/header--external.html</span> мы хотим вызвать содержимое файла src/html-blocks/common/modals/login.html
+                    В таком случае вызов пишеться так <span class="text-primary">//= ../common/modals/login.html</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="less">
+        <!--//= less-concept.html-->
+
+        <div class="panel panel-primary" id="less-target">
+            <div class="panel-body">
+                <p>Задача <span class="text-primary">$ gulp less</span></p>
+                <p>
+                    Файл <span class="text-primary">src/styles/styles.less</span> является диспетчером подключений для всех прочих less-файлов. <br/>
+                    Секция Third party предназначена для подключения less/css файлов сторонних библиотек и фреймворков. <br/>
+                    Секция Custom - для подключения собственных файлов стилей. <br/>
+                </p>
+
+                <p>
+                    При компиляции происходит объединение всех файлов, компиляция в CSS, форматирование стиля кодирования, добавление вендорных префиксов, минификация и запись sourcemaps. Итоговые файлы стилевых таблиц помещаются в каталог build/css (style.css, style.min.css, style.min.css.map)
+                </p>
+                <p>
+                    Для упрощения навигации при работе над крупными проектами предполагается структура размещения исходных файлов схожая с html-блоками.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="js">
+        <div class="panel panel-primary" id="js-target">
+            <div class="panel-body">
+                <p>Задача <span class="text-primary">$ gulp js</span></p>
+                <p>
+                    Файл <span class="text-primary">src/js/vendor.js</span> является диспетчером подключений js файлов сторонних библиотек и фреймворков.
+                    <br/>
+                    Файл <span class="text-primary">src/js/custom.js</span> является диспетчером подключений собственных js файлов.
+                </p>
+
+                <p>
+                    При компиляции происходит объединение всех файлов, проверка на наличие ошибок (при этом исключаются из проверки файлы сторонних библиотек и проверяются только те, что написаны нами), минификация и запись sourcemaps. Итоговый файл помещается в каталог build/js (main.js, main.min.js, main.min.js.map)
+                </p>
+                <p>
+                    Для упрощения навигации при работе над крупными проектами предполагается структура размещения исходных файлов схожая с html-блоками.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="img-svg">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+
+                <h3>Оптимизация изображений</h3>
+                <p>Задача <span class="text-primary">$ gulp images</span></p>
+
+                <p>
+                    Все контентные изображения, а также любые изображения, которые не должны быть объединены в спрайт, необходимо помещать в каталог <span class="text-primary">src/img/images</span>.
+                    <br/>
+                    <br/>
+                    При выполнении задачи все изображения из этого каталога оптимизируются. <br/>
+                    Итоговые файлы помещаются в каталог <span class="text-primary">build/img/images/</span>.
+                </p>
+
+                <h3>Оптимизация SVG</h3>
+                <p>Задача <span class="text-primary">$ gulp svg</span></p>
+
+                <p>
+                    Все SVG изображения, которые не должны быть объединены в спрайт, необходимо помещать в каталог <span class="text-primary">src/img/svg</span>.
+                    <br/>
+                    При выполнении задачи все SVG из этого каталога оптимизируются. <br/>
+                    Итоговые файлы помещаются в каталог <span class="text-primary">build/img/svg/</span> <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
