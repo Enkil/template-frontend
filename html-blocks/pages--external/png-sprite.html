@@ -1,5 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-body">
+        <h2>Создание PNG-спрайта</h2>
         <p>Задача <span class="text-primary">$ gulp png-sprite</span></p>
 
         <p>
@@ -29,8 +30,7 @@
             &--html5:before{
                 .sprite(@sprite-html5);
             }
-        }
-        </pre>
+        }</pre>
             </li>
             <li>Файл <span class="text-primary">src/styles/common/icons.less</span> подключаем в <span class="text-primary">src/styles/style.less</span> с помощью конструкции @import (@import "common/icons.less";)</li>
             <li>
@@ -46,8 +46,7 @@
             height: 24px;
             background-image: url(../img/sprites/png/png-sprite.png);
             background-position: 0 0;
-        }
-        </pre>
+        }</pre>
             </li>
             <li>html-тегу, около которого надо разместить иконку, добавляем CSS-классы png-sprite png-sprite--html5</li>
         </ul>
@@ -63,8 +62,52 @@
 
         <p>
             Итого, для добавления в спрайт и генерации сопутствующего Less/CSS-кода изображений необходимо
+            <ul>
+                <li>добавить в каталог <span class="text-primary">src/img/sprites/png</span> изображение (html5.png)</li>
+                <li>запустить задачу <span class="text-primary">$ gulp png-sprite</span></li>
+            </ul>
+        </p>
+
+        <h2>Создание Retina-ready PNG-спрайта</h2>
+
+        <p>
+            Для создания PNG-спрайта адаптированного под Retina-экраны и экраны повышенной плотности, необходимо в каталог
+            <span class="text-primary">src/img/sprites/png</span> поместить файл изображения вдвое большего размера, чем он должен отображаться. Имя файла обязательно
+            должно содержать постфикс -2x (filename-2x.png). <br/>
+            <span class="text-danger">Обязательным условием</span> для корректной работы является наличие двух файлов изображений для одной иконки (например, html5.png и html5-2x.png).
+            <br/>
+            В результате генерации спрайта создается спрайт <span class="text-primary">build/img/sprites/png-sprite-2x.png</span> и переменная вида <span class="text-primary">@sprite-filename-group</span>,
+            (например, @sprite-html5-group). <br/>
+            Для вызова данной переменной (mixin) необходимо использовать примесь (mixin) .retina-sprite()
+            Например, <span class="text-primary">.retina-sprite(@sprite-html5-group)</span>.
+        </p>
+
+        <p>
+            Пример файла icons.less: <br/>
+            <pre class="prettyprint linenums">.png-sprite{
+              &:before{
+                content: '';
+                display: inline-block;
+              }
+
+              &--html5:before{
+                .sprite(@sprite-html5);
+              }
+
+              &--html5-retina:before{
+                .retina-sprite(@sprite-html5-group)
+              }
+            }</pre>
+        </p>
+
+        <p>
+            Пример использования в разметке: <span class="png-sprite png-sprite--html5-retina">Test Retina-ready PNG sprite</span>
+        </p>
+
+        <p>
+            Итого, для добавления в спрайт и генерации сопутствующего Less/CSS-кода Retina изображений необходимо
         <ul>
-            <li>добавить в каталог <span class="text-primary">src/img/sprites/png</span> изображение (html5.png)</li>
+            <li>добавить в каталог <span class="text-primary">src/img/sprites/png</span> два изображения - обычное и вдвое большее, отличающиеся в названии постфиксом -2x (html5.png, html5-2x.png)</li>
             <li>запустить задачу <span class="text-primary">$ gulp png-sprite</span></li>
         </ul>
         </p>

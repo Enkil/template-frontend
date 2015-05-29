@@ -5,25 +5,23 @@
     <li><a href="#less" data-toggle="tab">Less</a></li>
     <li><a href="#js" data-toggle="tab">JavaScript</a></li>
     <li><a href="#img-svg" data-toggle="tab">Оптимизация графики</a></li>
-    <li><a href="#png-sprite" data-toggle="tab">PNG-sprite</a></li>
+    <li><a href="#png-sprite" data-toggle="tab">PNG-sprite + Retina PNG-sprite</a></li>
     <li><a href="#svg-sprite" data-toggle="tab">SVG-sprite</a></li>
-    <li><a href="#fonts" data-toggle="tab">Fonts</a></li>
     <li><a href="#livereload" data-toggle="tab">LiveReload</a></li>
     <li><a href="#gh-pages" data-toggle="tab">GitHub Pages</a></li>
-    <li><a href="#gh-pages" data-toggle="tab">Utils</a></li>
+    <li><a href="#utils" data-toggle="tab">Utils</a></li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active in" id="install">
         <div class="panel panel-primary">
             <div class="panel-body">
-
+                <h2>Требования к установке</h2>
                 <p>
-                <h3>Требования к установке</h3>
-                Для корректной работы шаблона в системе должны быть глобально установлены bower и nodejs (вместе с npm) <br/>
-                <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank" title="Установка Nodejs">Установка Nodejs</a>
-                <br/>
-                <a href="http://bower.io/#install-bower" target="_blank" title="Установка Bower">Установка Bower</a>
+                    Для корректной работы шаблона в системе должны быть глобально установлены bower и nodejs (вместе с npm) <br/>
+                    <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank" title="Установка Nodejs">Установка Nodejs</a>
+                    <br/>
+                    <a href="http://bower.io/#install-bower" target="_blank" title="Установка Bower">Установка Bower</a>
                 </p>
 
                 <p>
@@ -44,8 +42,8 @@
     <div class="tab-pane fade" id="gulp">
         <div class="panel panel-primary">
             <div class="panel-body">
+                <h2>Задачи Gulp</h2>
                 После установки шаблона можно приступать к работе над проектом.
-                <h3>Задачи Gulp</h3>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -131,10 +129,9 @@
         </div>
     </div>
     <div class="tab-pane fade" id="html">
-        <!--//= html-concept.html-->
-
         <div class="panel panel-primary" id="html-target">
             <div class="panel-body">
+                <h2>HTML-разметка</h2>
                 <p>Задача <span class="text-primary">$ gulp html</span></p>
                 <p>
                     Страницы, которые необходимо сверстать размещаются в корне каталога <span class="text-primary">src/</span> (пример index.html)
@@ -165,10 +162,9 @@
 
     </div>
     <div class="tab-pane fade" id="less">
-        <!--//= less-concept.html-->
-
         <div class="panel panel-primary" id="less-target">
             <div class="panel-body">
+                <h2>Компиляция Less</h2>
                 <p>Задача <span class="text-primary">$ gulp less</span></p>
                 <p>
                     Файл <span class="text-primary">src/styles/styles.less</span> является диспетчером подключений для всех прочих less-файлов. <br/>
@@ -189,6 +185,7 @@
     <div class="tab-pane fade" id="js">
         <div class="panel panel-primary" id="js-target">
             <div class="panel-body">
+                <h2>Компиляция JavaScript</h2>
                 <p>Задача <span class="text-primary">$ gulp js</span></p>
                 <p>
                     Файл <span class="text-primary">src/js/vendor.js</span> является диспетчером подключений js файлов сторонних библиотек и фреймворков.
@@ -208,8 +205,7 @@
     <div class="tab-pane fade" id="img-svg">
         <div class="panel panel-primary">
             <div class="panel-body">
-
-                <h3>Оптимизация изображений</h3>
+                <h2>Оптимизация изображений</h2>
                 <p>Задача <span class="text-primary">$ gulp images</span></p>
 
                 <p>
@@ -235,6 +231,7 @@
     <div class="tab-pane fade" id="png-sprite">
         <div class="panel panel-primary">
             <div class="panel-body">
+                <h2>Создание PNG-спрайта</h2>
                 <p>Задача <span class="text-primary">$ gulp png-sprite</span></p>
 
                 <p>
@@ -264,8 +261,7 @@
             &--html5:before{
                 .sprite(@sprite-html5);
             }
-        }
-        </pre>
+        }</pre>
                     </li>
                     <li>Файл <span class="text-primary">src/styles/common/icons.less</span> подключаем в <span class="text-primary">src/styles/style.less</span> с помощью конструкции @import (@import "common/icons.less";)</li>
                     <li>
@@ -281,8 +277,7 @@
             height: 24px;
             background-image: url(../img/sprites/png/png-sprite.png);
             background-position: 0 0;
-        }
-        </pre>
+        }</pre>
                     </li>
                     <li>html-тегу, около которого надо разместить иконку, добавляем CSS-классы png-sprite png-sprite--html5</li>
                 </ul>
@@ -304,7 +299,167 @@
                 </ul>
                 </p>
 
+                <h2>Создание Retina-ready PNG-спрайта</h2>
+
+                <p>
+                    Для создания PNG-спрайта адаптированного под Retina-экраны и экраны повышенной плотности, необходимо в каталог
+                    <span class="text-primary">src/img/sprites/png</span> поместить файл изображения вдвое большего размера, чем он должен отображаться. Имя файла обязательно
+                    должно содержать постфикс -2x (filename-2x.png). <br/>
+                    <span class="text-danger">Обязательным условием</span> для корректной работы является наличие двух файлов изображений для одной иконки (например, html5.png и html5-2x.png).
+                    <br/>
+                    В результате генерации спрайта создается спрайт <span class="text-primary">build/img/sprites/png-sprite-2x.png</span> и переменная вида <span class="text-primary">@sprite-filename-group</span>,
+                    (например, @sprite-html5-group). <br/>
+                    Для вызова данной переменной (mixin) необходимо использовать примесь (mixin) .retina-sprite()
+                    Например, <span class="text-primary">.retina-sprite(@sprite-html5-group)</span>.
+                </p>
+
+                <p>
+                    Пример файла icons.less: <br/>
+            <pre class="prettyprint linenums">.png-sprite{
+              &:before{
+                content: '';
+                display: inline-block;
+              }
+
+              &--html5:before{
+                .sprite(@sprite-html5);
+              }
+
+              &--html5-retina:before{
+                .retina-sprite(@sprite-html5-group)
+              }
+            }</pre>
+                </p>
+
+                <p>
+                    Пример использования в разметке: <span class="png-sprite png-sprite--html5-retina">Test Retina-ready PNG sprite</span>
+                </p>
+
+                <p>
+                    Итого, для добавления в спрайт и генерации сопутствующего Less/CSS-кода Retina изображений необходимо
+                <ul>
+                    <li>добавить в каталог <span class="text-primary">src/img/sprites/png</span> два изображения - обычное и вдвое большее, отличающиеся в названии постфиксом -2x (html5.png, html5-2x.png)</li>
+                    <li>запустить задачу <span class="text-primary">$ gulp png-sprite</span></li>
+                </ul>
+                </p>
+
             </div>
         </div>
+    </div>
+    <div class="tab-pane fade" id="svg-sprite">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <h2>Создание SVG-спрайта</h2>
+                <p>Задача <span class="text-primary">$ gulp svg-sprite</span></p>
+
+                <p>
+                    Все SVG, которые необходимо собрать в спрайт (например, png-файлы иконок) необходимо помещать в каталог <span class="text-primary">src/img/sprites/svg</span>.
+                    <br/>
+                    Итоговый спрайт будет оптимизирован и помещен в каталог <span class="text-primary">build/img/sprites/svg/svg-sprite.svg</span>.
+                    <br/>
+                    Также будет создан или дополнен файл <span class="text-primary">src/styles/common/_svg-sprite.less</span>, содержащий CSS-классы для вызова изображений спрайта.
+                    <br/>
+                    Имя CSS-класса всегда выглядит как <span class="text-primary">@svg-sprite-filename</span>, где filename - имя изображения, добавленного к спрайту.
+                </p>
+
+                <p>Пример работы с SVG-спрайтом и его стилями.</p>
+
+                <ul>
+                    <li>Размещаем svg-изображение иконки в каталоге <span class="text-primary">src/img/sprites/svg/html5.svg</span></li>
+                    <li>Запускаем задачу <span class="text-primary">$ gulp svg-sprite</span></li>
+                    <li>Создаем файл <span class="text-primary">src/styles/common/svg-icons.less</span></li>
+                    <li>
+                        В нем создаем следующие CSS-классы:
+                <pre class="prettyprint linenums">.svg-sprite{
+                  &:before{
+                    content: '';
+                    display: inline-block;
+                    width: 32px!important;
+                    height: 32px!important;
+                    background-size: contain!important;
+                  }
+
+                  &--html5-icon:before{
+                    .svg-sprite--html5(); // CSS-класс, созданный при генерации SVG-спрайта.
+                  }
+
+                }</pre>
+                    </li>
+                    <li>Файл <span class="text-primary">src/styles/common/svg-icons.less</span> подключаем в <span class="text-primary">src/styles/style.less</span> с помощью конструкции @import (@import "common/svg-icons.less";)</li>
+                    <li>
+                        После компиляции less (запускаем задачу <span class="text-primary">$ gulp less</span>)получаем следующий CSS код
+                <pre class="prettyprint linenums">.svg-sprite--html5
+                    {
+                        width: 47px;
+                        height: 47px;
+
+                        background-image: url('../img/sprites/svg/svg-sprite.svg');
+                        background-repeat: no-repeat;
+                        background-position: 0 0;
+                        background-size: 47px 47px;
+                    }
+                    .no-svg .svg-sprite--html5
+                    {
+                        background-image: url('../img/sprites/svg/svg-sprite.png');
+                    }
+
+
+                    .svg-sprite:before
+                    {
+                        display: inline-block;
+
+                        width: 32px!important;
+                        height: 32px!important;
+
+                        content: '';
+
+                        background-size: contain!important;
+                    }
+                    .svg-sprite--html5-icon:before
+                    {
+                        width: 47px;
+                        height: 47px;
+
+                        background-image: url('../img/sprites/svg/svg-sprite.svg');
+                        background-repeat: no-repeat;
+                        background-position: 0 0;
+                        background-size: 47px 47px;
+                    }
+                    .no-svg .svg-sprite--html5-icon:before
+                    {
+                        background-image: url('../img/sprites/svg/svg-sprite.png');
+                    }</pre>
+                    </li>
+                    <li>html-тегу, около которого надо разместить иконку, добавляем CSS-классы svg-sprite svg-sprite--html5-icon</li>
+                </ul>
+
+                <p>Пример: <span class="svg-sprite svg-sprite--html5-icon">Test PNG sprite</span></p>
+
+                <p>
+                    Работа с SVG-спрайтом в таком случае сводится к добавлению нужных SVG в каталог <span class="text-primary">src/img/sprites/svg</span>
+                    <br/>
+                    и созданию CSS-класса, в котором вызывается в качестве примеси (mixin) CSS-класс, созданный при генерации спрайта. <br/>
+                    Вы можете использовать CSS-классы и по другому, вызывая изображения с спрайта, не в псевдоэлементе :before
+                </p>
+
+                <p>
+                    Итого, для добавления в спрайт и генерации сопутствующего Less/CSS-кода изображений необходимо
+                <ul>
+                    <li>добавить в каталог <span class="text-primary">src/img/sprites/svg</span> изображение (html5.png)</li>
+                    <li>запустить задачу <span class="text-primary">$ gulp svg-sprite</span></li>
+                </ul>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="livereload">
+
+    </div>
+    <div class="tab-pane fade" id="gh-pages">
+
+    </div>
+    <div class="tab-pane fade" id="utils">
+
     </div>
 </div>
