@@ -9,10 +9,10 @@ var gulp = require('gulp'), // Task runner
     watch = require('gulp-watch'), // Watch, that actually is an endless stream
     rename = require("gulp-rename"), // Rename files
     del = require('del'), // Delete something
-    //rigger = require('rigger'), // // Include content of one file to another
     rigger = require('gulp-rigger'), // // Include content of one file to another
     size = require('gulp-size'), // Display the size of something
     path = require('path'),
+    processhtml = require('gulp-processhtml'), // Plugin uses Denis Ciccale's node-htmlprocessor to process/transform html files
     concat = require('gulp-concat'), // Concatenates files
     streamqueue = require('streamqueue'), // Pipe queued streams progressively, keeping datas order.
     sourcemaps = require('gulp-sourcemaps'), // Write source maps
@@ -102,7 +102,9 @@ gulp.task('webserver', function () {
 /* HTML */
 gulp.task('html', function () {
     return gulp.src(projectPath.src.html)
-        .pipe(rigger())
+        .pipe(processhtml({
+            recursive: true
+        }))
         .pipe(size({
             title: 'HTML'
         }))
