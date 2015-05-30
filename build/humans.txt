@@ -1,0 +1,19 @@
+/* TEAM */
+	Developer: Igor Timohin
+	Site: igor-timohin.ru
+	Contact: timohin.i [at] gmail.com
+	Twitter: @Igor_Timokhin
+	From: Saint-Petersburg, Russia
+	Location: Saint-Petersburg, Russia
+
+/* THANKS */
+
+    School: http://epixx.ru
+
+/* SITE */
+	Language: Russian
+	Doctype:HTML5
+	Standards: HTML5, CSS3
+	Components: Modernizr, jQuery, Bootstrap, Bootstrap Material Design, etc.
+	IDE: PhpShtorm, Gulp, Git, GitHub Pages
+    Software: Software used for the development

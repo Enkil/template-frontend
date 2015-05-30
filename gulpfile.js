@@ -52,7 +52,7 @@ var projectPath = {
         fonts: 'build/css/fonts/'
     },
     src: { // Set source paths
-        html: 'src/**/*.html',
+        html: ['src/**/*.html', 'humans.txt'],
         jsCustom: 'src/js/custom.js',
         jsVendor: 'src/js/vendor.js',
         style: 'src/styles/style.less',
@@ -74,7 +74,7 @@ var projectPath = {
         svgSprite: 'src/img/sprites/svg/**/*.svg',
         fonts: 'src/styles/fonts/**/*.*'
     },
-    clean: ['build/**/*', '!build/.gitignore'], // Set paths and exludes for cleaning build dir
+    clean: ['build/**/*', '!build/.gitignore', '!build/humans.txt'], // Set paths and exludes for cleaning build dir
     ghPages: 'build/**/*' // Set dir that will be uploaded to GitHub Pages
 };
 
