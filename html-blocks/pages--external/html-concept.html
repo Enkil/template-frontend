@@ -17,14 +17,23 @@
         </p>
         <p>
             Для указания того содержимое какого файла необходимо вставить используется конструкция вида
-            <span class="text-primary">//= html-blocks/folder-name/file-name.html</span> - содержимое файла file-name.html будет вставлено на место этой строки
+            <pre class="prettyprint linenums">
+&lt;!--build:include html-blocks/pages--external/file-name.html--&gt;
+This will be replaced by the content of html-blocks/pages--external/file-name.html
+&lt;!--/build--&gt;</pre>
+             - содержимое файла file-name.html будет вставлено на место данного блока. <br/>
         </p>
         <p>
             Допускается использование вложенности, то есть в одном файле, содержащим код html-разметки блока, можно вызвать содержимое другого файла с блоком разметки.
             При этом необходимо учитывать правильное написание пути к файлу. <br/>
             Например, <br/>
-            В файле <span class="text-primary">src/html-blocks/pages-external/header--external.html</span> мы хотим вызвать содержимое файла src/html-blocks/common/modals/login.html
-            В таком случае вызов пишеться так <span class="text-primary">//= ../common/modals/login.html</span>
+            В файле <span class="text-primary">src/html-blocks/pages-external/header--external.html</span> мы хотим вызвать содержимое файла <span class="text-primary">src/html-blocks/common/modals/login.html</span>
+            В таком случае вызов пишеться так
+
+            <pre class="prettyprint linenums">
+&lt;!--build:include ../common/modals/login.html--&gt;
+This will be replaced by the content of ../common/modals/login.html
+&lt;!--/build--&gt;</pre>
         </p>
     </div>
 </div>
