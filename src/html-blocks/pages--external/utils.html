@@ -1,0 +1,48 @@
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <h2>Обработка шрифтов</h2>
+        <p>Задача <span class="text-primary">$ gulp fonts</span></p>
+        <p>
+            Файлы используемых шрифтов необходимо размещать в каталоге <span class="text-primary">src/styles/fonts</span>.
+            <br/>
+            При обработке шрифты будут скопированы в каталог <span class="text-primary">build/css/fonts</span>. <br/>
+            Важно корректно прописать к ним пути в файле Less, описывающим типографику.
+        </p>
+
+        <h2>Очистка каталога сборки</h2>
+        <p>Задача <span class="text-primary">$ gulp clean</span></p>
+        <p>
+            При выполнении задачи полностью удаляется содержимое каталога build/ за исключением файла <span class="text-primary">build/.gitignore</span>
+        </p>
+
+        <h2>Публикация на Github Pages</h2>
+        <p>Задача <span class="text-primary">$ gulp gh-pages</span></p>
+        <p>
+            При запуске задачи будет создана ветка gh-pages и в нее залито текущее состояние каталога <span class="text-primary">build/</span>.
+        </p>
+
+        <h2>Полная сборка проекта</h2>
+        <p>Задача <span class="text-primary">$ gulp build</span></p>
+        <p>
+            При запуске задачи последовательно выполняются задачи <span class="text-primary">clean, html, js, less, images, png-sprite, svg-sprite, svg, fonts, gh-pages</span>.
+            <br/>
+            В итоге выполнения в каталоге <span class="text-primary">build/</span> формируется полная сборка проекта с нуля.
+        </p>
+
+        <h2>Отслеживание изменений</h2>
+        <p>Задача <span class="text-primary">$ gulp watch</span></p>
+        <p>
+            При запуске сначала выполняется задача <span class="text-primary">$ gulp webserver</span>, затем при изменении или добавлении в каталоге <span class="text-primary">src/</span> каких
+            либо файлов, автоматически запускается соответсвующая задача по их обработке.
+        </p>
+
+        <h2>Настройки шаблона</h2>
+        <p>
+            В файле <span class="text-primary">gulpfile.js</span> в секции <span class="text-primary">Settings</span> в разделе <span class="text-primary">Path settings</span> задаются
+            пути к каталогам размещения обработанных файлов (итогов сборки), исходных файлов и путей для отслеживания изменений.
+            <br/>
+            Рекомендуется изменять пути и целевые файлы только через этот раздел, при необходимости его дополняя новыми переменными.
+        </p>
+
+    </div>
+</div>

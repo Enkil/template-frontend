@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <h2>Livereload и синхронизация между браузерами</h2>
+        <p>Задача <span class="text-primary">$ gulp webserver</span></p>
+
+        <p>
+            При выполнении задчи запускается локальный веб-сервер BrowserSync и открыватся index.html проекта. <br/>
+            <a href="http://www.browsersync.io/" target="_blank" title="Подробнее о BrowserSync">Подробнее о BrowserSync</a>
+        </p>
+
+        <p>
+            Сервер использует каталог <span class="text-primary">build/</span> в качестве корня проекта. <br/>
+            При запуске формируются следующие данные:
+
+            <pre class="prettyprint linenums">
+[App Front-End] Access URLs:
+ ----------------------------------------------
+       Local: http://localhost:9000 // локальный URL проекта
+    External: http://192.168.0.100:9000 // внешний (в пределах локальной сети) URL проекта (по нему можно открыть на других устройствах в той же сети)
+      Tunnel: https://iuvrvzmmli.localtunnel.me // Туннель - защищенный уникальный URL, можно дать человеку на другом конце мира и он также будет видеть все обновления в реальном времени
+ ----------------------------------------------
+          UI: http://localhost:3001 // локальный URL WebUI BrowserSync
+ UI External: http://192.168.0.100:3001 // внешний (в пределах сети) URL WebUI BrowserSync
+ ----------------------------------------------
+[App Front-End] Serving files from: ./build // корень проекта для BrowserSync
+            </pre>
+        </p>
+    </div>
+</div>
